@@ -50,7 +50,7 @@ node {
       docker.build("elixir-echo-server-test:${env.BUILD_ID}", "-f test-Dockerfile ./")
       testOutput = sh (
         script: "docker run -e HOST='${STAGE_SWARM_MANAGER}' --rm --name test elixir-echo-server-test:${env.BUILD_ID}",
-        returnStdout: true
+        returnStdout: "da"
       ).trim()
       if (testOutput != 'test')
         error("Build failed because the output should have been \"test\", but it was " + testOutput + " instead")
